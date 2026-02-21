@@ -4,13 +4,15 @@ let secretNumber = Math.trunc(Math.random() * 20 + 1);
 let score = 20;
 let highScore = 0;
 
+//Message is simply a placeholder used for text to connect the message class from the html document
 const displayMessage = function(message) {
   document.querySelector('.message').textContent = message;
 }
   document.querySelector('.check').addEventListener('click', function() {
+    //Number().. converts string to integer
   const guessNumber = Number(document.querySelector('.guess').value);
   console.log(guessNumber);
-
+//guess number checks a base case, if empty()..
   if (!guessNumber) {
     displayMessage('Please select a number.. 🥺')
   } else if (guessNumber === secretNumber) {
@@ -35,7 +37,7 @@ const displayMessage = function(message) {
     }
   }
   });
-
+// This is the second event listener using the again button, notice it is in a new code block and all info are appended to the previous .check that defined most classes.
   document.querySelector('.again').addEventListener('click', function(message){
     score  = 20;
     secretNumber = Math.trunc(Math.random() * 20 + 1);
