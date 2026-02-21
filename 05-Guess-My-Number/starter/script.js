@@ -17,10 +17,15 @@ const displayMessage = function(message) {
     displayMessage('You correctly guessed the correct number!😊')
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('body').style.background = '#60b347';
+    document.querySelector('.number').style.width = '30rem';
+    if(score > highScore){
+      highScore = score;
+      document.querySelector('.highscore').textContent = highScore;
+    }
   }
   if(guessNumber !== secretNumber) {
     if(score > 1) {
-      displayMessage(score > secretNumber ? '⚠️ Score is too high!' : '🔻 Score is too low!')
+      displayMessage(guessNumber > secretNumber ? '⚠️ Score is too high!' : '🔻 Score is too low!')
       score--;
       document.querySelector('.score').textContent = score;
     }
@@ -29,9 +34,16 @@ const displayMessage = function(message) {
       document.querySelector('.score').textContent = 0;
     }
   }
-  if(score > highScore){
-    highScore = score;
-    document.querySelector('.highscore').textContent = highScore;
-  }
+  });
 
-});
+  document.querySelector('.again').addEventListener('click', function(message){
+    score  = 20;
+    secretNumber = Math.trunc(Math.random() * 20 + 1);
+    displayMessage('Start guessing....');
+    document.querySelector('.score').textContent = score;
+    document.querySelector('.number').textContent = '?';
+    document.querySelector('.guess').value = "";
+    document.querySelector('body').style.background = '#222';
+    document.querySelector('.number').style.width = '15rem';
+
+  })
